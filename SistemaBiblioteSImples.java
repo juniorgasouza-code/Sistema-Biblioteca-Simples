@@ -9,16 +9,20 @@ public class SistemaBiblioteSImples {
     static ArrayList<String> livrosTitulo;
     static ArrayList<String> livrosAutor;
     static ArrayList<Boolean> livrosEmprestado;
+
     public static void main(String[] args) {
         mostrarMenu();
     }
-    public static void mostrarMenu(){
-        //Mostrar Menu 
-        System.out.println("1 - Cadastrar usuário\n2 - Cadastrar livro\n3 - Realizar empréstimo\n4 - Devolver livro\n5 - Ver livros disponíveis\n6 - Sair\n>");
+
+    public static void mostrarMenu() {
+        // Mostrar Menu
+        System.out.println(
+                "1 - Cadastrar usuário\n2 - Cadastrar livro\n3 - Realizar empréstimo\n4 - Devolver livro\n5 - Ver livros disponíveis\n6 - Sair\n>");
         int escolhaMenu = SC.nextInt();
         switch (escolhaMenu) {
             case 1:
-                
+                // Cadastro de livros
+                cadastroUsuario();
                 break;
             case 2:
 
@@ -38,5 +42,21 @@ public class SistemaBiblioteSImples {
             default:
                 break;
         }
+    }
+
+    public static void cadastroUsuario() {
+        System.out.println("Cadastro de  Usuario!");
+        System.out.println("Insira o cpf\n>");
+        String cpf = SC.next();
+        if (!usuarioCPF.contains(cpf)) {
+            usuarioNome.add(cpf);
+            System.out.println("Insira o nome do Usuario\n>");
+            String nome = SC.next();
+            usuarioNome.add(nome);
+        }else{
+            System.out.println("CPF ja cadastrado!");
+            cadastroUsuario();
+        }
+        
     }
 }
