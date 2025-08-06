@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class App {
+public class SistemaBibliotecaSimples {
 
     static Scanner SC = new Scanner(System.in);
     static ArrayList<String> CPFS = new ArrayList<>();
