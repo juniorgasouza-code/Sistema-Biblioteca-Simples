@@ -34,7 +34,7 @@ public class SistemaBibliotecaSimples {
                     emprestimoLivro();
                     break;
                 case 4:
-                    System.out.println("Nao feito");
+                    devolverLivros();
                     break;
                 case 5:
                     System.out.println("Não Feito");
@@ -140,6 +140,10 @@ public class SistemaBibliotecaSimples {
             EMPRESTIMO.set(indexConta, livrosUsuario);
             LIVROEMPRESTADO.set(indexLivro, true);
         }
+    }
+
+    public static void devolverLivros(){
+        System.out.println("Devolver Livros!");
     }
 
     public static int buscarIndex(String cpf) {
