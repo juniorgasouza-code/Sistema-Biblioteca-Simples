@@ -112,7 +112,7 @@ public class App {
         String codigoLivro = SC.next();
         int indexLivro = 0;
         for (String code : CODIGOS) {
-            if(!CODIGOS.equals(codigoLivro)){
+            if(!code.equals(codigoLivro)){
                 System.out.println("Codigo Invalido tente novamente!");
                 emprestimoLivro();
             }
@@ -135,7 +135,7 @@ public class App {
     public static int buscarIndex(String cpf) {
         int indexConta = 0;
         for (String name : CPFS) {
-            if (USERNAMES.equals(cpf)) {
+            if (name.equals(cpf)) {
                 return indexConta;
             }
             indexConta++;
