@@ -12,6 +12,7 @@ public class SistemaBibliotecaSimples {
     static ArrayList<Boolean> LIVROEMPRESTADO = new ArrayList<>();
     static ArrayList<String> EMPRESTIMO = new ArrayList<>();
     static ArrayList<Integer> CONTAGEMLIVROS = new ArrayList<>();
+    static ArrayList<int[]> IDLIVROSEMPRESTADOS = new ArrayList<>();
 
     public static void main(String[] args) {
         mostrarMenu();
@@ -139,11 +140,35 @@ public class SistemaBibliotecaSimples {
             String livrosUsuario = EMPRESTIMO.get(indexConta) + ", " + TITULOS.get(indexLivro);
             EMPRESTIMO.set(indexConta, livrosUsuario);
             LIVROEMPRESTADO.set(indexLivro, true);
+            
         }
     }
 
-    public static void devolverLivros(){
+    public static void devolverLivros() {
         System.out.println("Devolver Livros!");
+        System.out.println("Insira o cpf da pessoa que você quer devolver\n>");
+        String cpf = SC.next();
+        
+        if (CPFS.contains(cpf)) {
+            int indexConta = buscarIndex(cpf);
+            
+            // Marca os livros como disponíveis novamente
+            int[] livrosEmprestados = IDLIVROSEMPRESTADOS.get(indexConta);
+            for (int indexLivro : livrosEmprestados) {
+                LIVROEMPRESTADO.set(indexLivro, false);
+            }
+    
+            // Limpa os dados de empréstimo do usuário
+            CONTAGEMLIVROS.set(indexConta, 0);
+            EMPRESTIMO.set(indexConta, "Não possui Emprestimo");
+            IDLIVROSEMPRESTADOS.set(indexConta, new int[0]); // esvazia a lista de livros emprestados
+    
+            System.out.println("Livros devolvidos com sucesso!");
+    
+        } else {
+            System.out.println("CPF Invalido. Tente novamente!");
+            devolverLivros();
+        }
     }
 
     public static int buscarIndex(String cpf) {
