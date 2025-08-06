@@ -21,7 +21,7 @@ public class SistemaBibliotecaSimples {
         // Mostrar Menu
         while (true) {
             System.out.println(
-                    "1 - Cadastrar usuário\n2 - Cadastrar livro\n3 - Realizar empréstimo\n4 - Devolver livro\n5 - Ver livros disponíveis\n6 - Sair\n>");
+                    "1 - Cadastrar usuário\n2 - Cadastrar livro\n3 - Realizar empréstimo\n4 - Devolver todos os livros\n5 - Ver livros disponíveis\n6 - Sair\n>");
             int escolhaMenu = SC.nextInt();
             switch (escolhaMenu) {
                 case 1:
@@ -107,28 +107,38 @@ public class SistemaBibliotecaSimples {
         for (String titulos : TITULOS) {
             System.out.println("CODIGO: " + CODIGOS.get(index) + " Nome: " + TITULOS.get(index) + " EMPRESTADO? "
                     + LIVROEMPRESTADO.get(index));
+            index++;
         }
         System.out.println("Insrira o codigo que do livro que Você deseja\n>");
         String codigoLivro = SC.next();
-        int indexLivro = 0;
-        for (String code : CODIGOS) {
-            if(!code.equals(codigoLivro)){
-                System.out.println("Codigo Invalido tente novamente!");
-                emprestimoLivro();
+        int indexLivro = -1;
+        for (int i = 0; i < CODIGOS.size(); i++) {
+            if (CODIGOS.get(i).equals(codigoLivro)) {
+                indexLivro = i;
+                break;
             }
-            indexLivro++;
         }
-        if(LIVROEMPRESTADO.get(indexLivro) == false ){
-            System.out.println("Livro ja emprestado tente novamente! ");
+
+        if (indexLivro == -1) {
+            System.out.println("Código inválido, tente novamente!");
             emprestimoLivro();
+            return;
         }
-        if(CONTAGEMLIVROS.get(indexConta) == 3){
+        if (LIVROEMPRESTADO.get(indexLivro) != false) {
+            System.out.println("Livro ja emprestado tente novamente! ");
+            return;
+        }
+        if (CONTAGEMLIVROS.get(indexConta) == 3) {
             System.out.println("Você excedeu o limite de livros que pode emprestar!");
             System.out.println("Retornando ao Menu inicial...");
             mostrarMenu();
-        }else{
+        } else {
             System.out.println("Livro Emprestado!");
-            
+            int contagem = CONTAGEMLIVROS.get(indexConta) + 1;
+            CONTAGEMLIVROS.set(indexConta, contagem);
+            String livrosUsuario = EMPRESTIMO.get(indexConta) + ", " + TITULOS.get(indexLivro);
+            EMPRESTIMO.set(indexConta, livrosUsuario);
+            LIVROEMPRESTADO.set(indexLivro, true);
         }
     }
 
