@@ -12,7 +12,6 @@ public class SistemaBibliotecaSimples {
     static ArrayList<Boolean> LIVROEMPRESTADO = new ArrayList<>();
     static ArrayList<String> EMPRESTIMO = new ArrayList<>();
     static ArrayList<Integer> CONTAGEMLIVROS = new ArrayList<>();
-    static ArrayList<int[]> IDLIVROSEMPRESTADOS = new ArrayList<>();
 
     public static void main(String[] args) {
         mostrarMenu();
@@ -38,7 +37,7 @@ public class SistemaBibliotecaSimples {
                     devolverLivros();
                     break;
                 case 5:
-                    System.out.println("Não Feito");
+                    verTodosLivrosDisponiveis();
                     break;
                 case 6:
                     System.exit(0);
@@ -169,6 +168,14 @@ public class SistemaBibliotecaSimples {
         EMPRESTIMO.set(indexConta, "Não possui Emprestimo");
 
         System.out.println("Todos os livros foram devolvidos com sucesso.");
+    }
+
+    public static void verTodosLivrosDisponiveis(){
+        for(int i = 0; i < TITULOS.size(); i++){
+            if(LIVROEMPRESTADO.get(i) == true){
+                System.out.println("Livro: " + TITULOS.get(i));
+            }
+        }
     }
 
     public static int buscarIndex(String cpf) {
