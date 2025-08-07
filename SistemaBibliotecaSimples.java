@@ -172,7 +172,7 @@ public class SistemaBibliotecaSimples {
 
     public static void verTodosLivrosDisponiveis(){
         for(int i = 0; i < TITULOS.size(); i++){
-            if(LIVROEMPRESTADO.get(i) == true){
+            if(LIVROEMPRESTADO.get(i) == false){
                 System.out.println("Livro: " + TITULOS.get(i));
             }
         }
